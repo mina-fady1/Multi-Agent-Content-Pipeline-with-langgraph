@@ -1,0 +1,24 @@
+{
+  "slot_id": "thread_1",
+  "type": "tech-thread",
+  "service": "web3-security",
+  "format": null,
+  "topic": "`sub_account_sign_v1` and `sign_v1` Passes Session Authorities as Signers During CPI Calls [Swig / Rust]",
+  "post_text": "1/ Swig's `sub_account_sign_v1` and `sign_v1` pass session authorities as signers during CPI calls [KB: SS-03703]. This flaw grants unintended authority to downstream transactions.\n\n2/ The code omits session authorities from the `restricted_keys` list. Only `Secp256k1` lacks authority, while other types incorrectly include both payer and session keys.\n\n3/ Downstream CPI calls receive these accounts as valid signers. This bypasses intended access controls and expands the effective signer set beyond protocol design.\n\n4/ Fix requires checking `authority_type()` before writing to `restricted_keys`. For non-`Secp256k1` roles, write both payer and session authority keys explicitly.\n\n5/ The corrected logic writes two keys when the authority type is not `Secp256k1`. This ensures only authorized entities can sign transactions involving CPI operations.\n\n6/ Verify invariants confirm that restricted keys match expected authority types. Session accounts must remain excluded unless their specific role permits signing privileges.\n\n7/ Protocol defense demands strict signer validation at entry points. Implementing precise key restrictions prevents privilege escalation via CPI mechanisms and protects asset integrity.",
+  "tweets": [
+    "1/ Swig's `sub_account_sign_v1` and `sign_v1` pass session authorities as signers during CPI calls [KB: SS-03703]. This flaw grants unintended authority to downstream transactions.",
+    "2/ The code omits session authorities from the `restricted_keys` list. Only `Secp256k1` lacks authority, while other types incorrectly include both payer and session keys.",
+    "3/ Downstream CPI calls receive these accounts as valid signers. This bypasses intended access controls and expands the effective signer set beyond protocol design.",
+    "4/ Fix requires checking `authority_type()` before writing to `restricted_keys`. For non-`Secp256k1` roles, write both payer and session authority keys explicitly.",
+    "5/ The corrected logic writes two keys when the authority type is not `Secp256k1`. This ensures only authorized entities can sign transactions involving CPI operations.",
+    "6/ Verify invariants confirm that restricted keys match expected authority types. Session accounts must remain excluded unless their specific role permits signing privileges.",
+    "7/ Protocol defense demands strict signer validation at entry points. Implementing precise key restrictions prevents privilege escalation via CPI mechanisms and protects asset integrity."
+  ],
+  "image": "D:\\programming mina fady\\Multi-Agent Content Pipeline with langgraph\\output\\week11\\images\\thread_1.png",
+  "links": [],
+  "source_type": "kb",
+  "source_id": "SS-03703",
+  "source_url": null,
+  "source_provenance": "kb",
+  "review_score": 9.2
+}

@@ -1,0 +1,38 @@
+# Banned vocabulary for SanadSquad content pipeline
+# Loaded dynamically into code checks; one word/phrase per line.
+delve
+leverage
+tapestry
+underscore
+foster
+pivotal
+realm
+landscape
+crucial
+seamless
+robust
+navigate
+testament
+ever-evolving
+game-changer
+revolutionize
+unleash
+groundbreaking
+beacon
+harness
+dynamic
+plethora
+multifaceted
+paramount
+holistic
+synergy
+supercharge
+cutting-edge
+bespoke
+transformative
+empower
+mastery
+elevate
+dive deep
+it is worth noting
+in conclusion

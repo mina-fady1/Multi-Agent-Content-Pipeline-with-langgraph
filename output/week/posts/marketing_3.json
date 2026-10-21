@@ -1,0 +1,18 @@
+{
+  "slot_id": "marketing_3",
+  "type": "marketing-post",
+  "service": "pentesting",
+  "format": "short-tip",
+  "topic": "Hackers hijack npm packages with 2 billion weekly downloads in supply chain attack",
+  "post_text": "Contract audits miss malware in npm packages that hijack wallets via phishing. SanadSquad pentesting checks these supply chains before they drain funds.",
+  "tweets": [
+    "Contract audits miss malware in npm packages that hijack wallets via phishing. SanadSquad pentesting checks these supply chains before they drain funds."
+  ],
+  "image": "D:\\programming mina fady\\Multi-Agent Content Pipeline with langgraph\\output\\week11\\images\\marketing_3.png",
+  "links": [],
+  "source_type": "web",
+  "source_id": null,
+  "source_url": "https://www.bleepingcomputer.com/news/security/hackers-hijack-npm-packages-with-2-billion-weekly-downloads-in-supply-chain-attack",
+  "source_provenance": "live",
+  "review_score": 9.2
+}

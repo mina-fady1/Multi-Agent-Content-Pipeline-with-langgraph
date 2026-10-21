@@ -1,0 +1,44 @@
+{
+  "run_id": "week11",
+  "timestamp": "2026-10-21T21:13:40.316239+00:00",
+  "total_slots": 6,
+  "pieces_shipped": 5,
+  "pieces_dropped": 1,
+  "dropped_details": [
+    {
+      "slot_id": "marketing_1",
+      "type": "marketing-post",
+      "reason": "The draft fails the 'Grounding & Factual Integrity' requirement because it makes a definitive claim ('Contract audits miss injected prompts...') without citing specific findings from the provided Source Evidence or Knowledge Base. The source evidence describes specific mechanisms (bootstrap file injection, shell command modification) but does not explicitly state that contract audits fail to detect these; this is an inference, not a fact derived from the text. Additionally, the draft uses banned vocabulary ('secures') and lacks the required link retrieval verification context for a news reaction post. (Violations: Grounding & Factual Integrity: Claim 'Contract audits miss injected prompts' is not explicitly supported by the provided Source Evidence; this is an unsupported inference rather than a cited fact., Banned Vocabulary: Use of word 'secures' which falls under banned AI vocabulary patterns (implies absolute security guarantees without nuance)., Link Integrity: The URL provided in the draft must be verified as retrieved during the current execution run before inclusion.)"
+    }
+  ],
+  "tokens_used": {
+    "prompt_tokens": 44827,
+    "completion_tokens": 1652,
+    "total_tokens": 46479,
+    "estimated_cost_usd": 0.0,
+    "pricing_complete": true,
+    "known_cost_estimate_usd": 0.0,
+    "usage_estimated": false,
+    "model_usage": [
+      {
+        "provider": "ollama",
+        "model": "qwen3.5:4b-q4_K_M",
+        "prompt_tokens": 44827,
+        "completion_tokens": 1652,
+        "total_tokens": 46479,
+        "usage_estimated": false,
+        "input_usd_per_million": 0.0,
+        "output_usd_per_million": 0.0,
+        "estimated_cost_usd": 0.0
+      }
+    ],
+    "pricing_assumptions": [
+      "Ollama estimate excludes hardware and electricity."
+    ]
+  },
+  "duration_seconds": 47.36,
+  "demo_mode": false,
+  "pieces_demo": 0,
+  "provider": "ollama",
+  "model": "qwen3.5:4b-q4_K_M"
+}

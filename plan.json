@@ -1,0 +1,38 @@
+{
+  "week": "week-42",
+  "slots": [
+    {
+      "id": "thread_1",
+      "type": "tech-thread",
+      "focus": "Arbitrary CPI and Signer Privilege Escalation in Solana Smart Wallets"
+    },
+    {
+      "id": "thread_2",
+      "type": "tech-thread",
+      "focus": null
+    },
+    {
+      "id": "thread_3",
+      "type": "tech-thread",
+      "focus": null
+    },
+    {
+      "id": "marketing_1",
+      "type": "marketing-post",
+      "service": "agentic-security",
+      "focus": "Prompt injection reaching agent signing tools"
+    },
+    {
+      "id": "marketing_2",
+      "type": "marketing-post",
+      "service": "agentic-payments",
+      "focus": null
+    },
+    {
+      "id": "marketing_3",
+      "type": "marketing-post",
+      "service": "pentesting",
+      "focus": null
+    }
+  ]
+}

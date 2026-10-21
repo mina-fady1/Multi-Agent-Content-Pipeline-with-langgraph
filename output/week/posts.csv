@@ -1,0 +1,42 @@
+Post Text,Image
+"1/ Swig's `sub_account_sign_v1` and `sign_v1` pass session authorities as signers during CPI calls [KB: SS-03703]. This flaw grants unintended authority to downstream transactions.
+
+2/ The code omits session authorities from the `restricted_keys` list. Only `Secp256k1` lacks authority, while other types incorrectly include both payer and session keys.
+
+3/ Downstream CPI calls receive these accounts as valid signers. This bypasses intended access controls and expands the effective signer set beyond protocol design.
+
+4/ Fix requires checking `authority_type()` before writing to `restricted_keys`. For non-`Secp256k1` roles, write both payer and session authority keys explicitly.
+
+5/ The corrected logic writes two keys when the authority type is not `Secp256k1`. This ensures only authorized entities can sign transactions involving CPI operations.
+
+6/ Verify invariants confirm that restricted keys match expected authority types. Session accounts must remain excluded unless their specific role permits signing privileges.
+
+7/ Protocol defense demands strict signer validation at entry points. Implementing precise key restrictions prevents privilege escalation via CPI mechanisms and protects asset integrity.",D:\programming mina fady\Multi-Agent Content Pipeline with langgraph\output\week11\images\thread_1.png
+"1/ Swig's secp256k1_authenticate fails against signature malleability and replay attacks. [KB: SS-03706] This flaw permits unauthorized repeated operations via reused signatures.
+
+2/ The implementation lacks checks to enforce single-use signatures. An attacker can submit the same valid signature multiple times to authorize distinct transactions without detection.
+
+3/ Furthermore, the code ignores whether the S component is in low-order form. Multiple valid signatures exist for one message, allowing modification of signed payloads without breaking verification logic.
+
+4/ This malleability undermines signature uniqueness. Attackers alter the S value to create new valid signatures, enabling replay in different contexts or manipulation of transaction data.
+
+5/ Remediation requires rejecting any signature where the S component is not in low-order form. The validator must explicitly check this condition before processing authorization requests.
+
+6/ To prevent replay attacks, implement nonce tracking or on-chain replay protection mechanisms. Ensure each signature is accepted only once to stop unauthorized repeated operations.
+
+7/ Protocol defense demands strict invariant enforcement for cryptographic primitives. SanadSquad audits cover the whole attack surface, including smart contract logic and protocol design reviews.",D:\programming mina fady\Multi-Agent Content Pipeline with langgraph\output\week11\images\thread_2.png
+"1/ Swig protocol allows malicious instructions on restricted accounts via sign_v1. A user with TokenLimit can transfer authority without balance changes, bypassing access controls entirely. [KB: SS-03699]
+
+2/ The instruction checks permissions only when balances shift. It ignores actions like SetAuthority that modify control but leave token amounts untouched. This logic flaw permits unauthorized ownership transfers.
+
+3/ An attacker with minimal TokenLimit can execute arbitrary CPIs on any account type. Stake accounts and other state structures face similar risks where control changes do not trigger permission checks.
+
+4/ The proof of concept confirms second_authority gains full control over a token account despite holding only a limited transfer allowance. Ownership transfers succeed because the balance remains constant.
+
+5/ Remediation requires restricting instruction types per account role. Token accounts must permit only Transfer, Burn, and Mint operations. No other actions should execute without explicit approval.
+
+6/ Implement strict invariant checks before CPI execution. Verify that every allowed instruction matches the assigned authority configuration for that specific account type.
+
+7/ SanadSquad covers the whole attack surface, not just the contract. Our Web3 Security audits address these access control gaps across EVM and Solana environments.",D:\programming mina fady\Multi-Agent Content Pipeline with langgraph\output\week11\images\thread_3.png
+"Contract audits miss how AI agents propose spending without holding wallets, relying instead on external governance to enforce policy before execution. SanadSquad reviews agentic payment protocols to ensure this separation of decision and execution remains intact.",D:\programming mina fady\Multi-Agent Content Pipeline with langgraph\output\week11\images\marketing_2.png
+Contract audits miss malware in npm packages that hijack wallets via phishing. SanadSquad pentesting checks these supply chains before they drain funds.,D:\programming mina fady\Multi-Agent Content Pipeline with langgraph\output\week11\images\marketing_3.png

@@ -1,0 +1,197 @@
+[
+  {
+    "timestamp": "2026-10-21T21:13:15.560683+00:00",
+    "slot_id": "marketing_1",
+    "post_type": "marketing-post",
+    "service": "agentic-security",
+    "query": "Prompt injection reaching agent signing tools",
+    "allowed_domains": [
+      "anthropic.com",
+      "arxiv.org",
+      "deepmind.google",
+      "embracethered.com",
+      "github.com",
+      "hiddenlayer.com",
+      "lakera.ai",
+      "langchain.com",
+      "openai.com",
+      "owasp.org",
+      "simonwillison.net",
+      "x.com"
+    ],
+    "requested_domains": [
+      "anthropic.com",
+      "arxiv.org",
+      "deepmind.google",
+      "embracethered.com",
+      "github.com",
+      "hiddenlayer.com",
+      "lakera.ai",
+      "langchain.com",
+      "openai.com",
+      "owasp.org"
+    ],
+    "mode": "live",
+    "status": "success",
+    "error": null,
+    "results_count": 3,
+    "retrieved_urls": [
+      "https://github.com/centminmod/explain-openclaw/blob/master/05-worst-case-security/prompt-injection-attacks.md",
+      "https://arxiv.org/html/2504.19793v2",
+      "https://github.com/Joe-B-Security/awesome-prompt-injection"
+    ],
+    "fixture_urls": [],
+    "notes": "Live search returned 3 usable domain-filtered items."
+  },
+  {
+    "timestamp": "2026-10-21T21:13:15.729225+00:00",
+    "slot_id": "marketing_1",
+    "post_type": "marketing-post",
+    "service": "agentic-security",
+    "query": "Prompt injection reaching agent signing tools",
+    "allowed_domains": [
+      "anthropic.com",
+      "arxiv.org",
+      "deepmind.google",
+      "embracethered.com",
+      "github.com",
+      "hiddenlayer.com",
+      "lakera.ai",
+      "langchain.com",
+      "openai.com",
+      "owasp.org",
+      "simonwillison.net",
+      "x.com"
+    ],
+    "requested_domains": [
+      "simonwillison.net",
+      "x.com"
+    ],
+    "mode": "live",
+    "status": "success",
+    "error": null,
+    "results_count": 3,
+    "retrieved_urls": [
+      "https://simonwillison.net/tags/prompt-injection",
+      "https://simonwillison.net/tags/prompt-injection?page=2",
+      "https://simonwillison.net/tags/ai-agents?page=2"
+    ],
+    "fixture_urls": [],
+    "notes": "Live search returned 3 usable domain-filtered items."
+  },
+  {
+    "timestamp": "2026-10-21T21:13:17.058225+00:00",
+    "slot_id": "marketing_2",
+    "post_type": "marketing-post",
+    "service": "agentic-payments",
+    "query": "x402 protocol architecture and agent payment rails",
+    "allowed_domains": [
+      "coinbase.com",
+      "defillama.com",
+      "docs.cdp.coinbase.com",
+      "dune.com",
+      "github.com",
+      "stripe.com",
+      "x.com",
+      "x402.org"
+    ],
+    "requested_domains": [
+      "coinbase.com",
+      "defillama.com",
+      "docs.cdp.coinbase.com",
+      "dune.com",
+      "github.com",
+      "stripe.com",
+      "x.com",
+      "x402.org"
+    ],
+    "mode": "live",
+    "status": "success",
+    "error": null,
+    "results_count": 3,
+    "retrieved_urls": [
+      "https://github.com/aws-samples/sample-secure-agentic-payments-on-aws-x402",
+      "https://github.com/quiknode-labs/x402-rails",
+      "https://x402.org/wp-content/uploads/sites/10/2026/06/x402-whitepaper.pdf"
+    ],
+    "fixture_urls": [],
+    "notes": "Live search returned 3 usable domain-filtered items."
+  },
+  {
+    "timestamp": "2026-10-21T21:13:18.055480+00:00",
+    "slot_id": "marketing_3",
+    "post_type": "marketing-post",
+    "service": "pentesting",
+    "query": "web3 supply chain npm package vulnerability incident",
+    "allowed_domains": [
+      "bleepingcomputer.com",
+      "cisa.gov",
+      "cve.mitre.org",
+      "github.com",
+      "hackerone.com",
+      "krebsonsecurity.com",
+      "mandiant.com",
+      "nvd.nist.gov",
+      "owasp.org",
+      "portswigger.net",
+      "x.com"
+    ],
+    "requested_domains": [
+      "bleepingcomputer.com",
+      "cisa.gov",
+      "cve.mitre.org",
+      "github.com",
+      "hackerone.com",
+      "krebsonsecurity.com",
+      "mandiant.com",
+      "nvd.nist.gov",
+      "owasp.org",
+      "portswigger.net"
+    ],
+    "mode": "live",
+    "status": "success",
+    "error": null,
+    "results_count": 3,
+    "retrieved_urls": [
+      "https://www.bleepingcomputer.com/news/security/hackers-hijack-npm-packages-with-2-billion-weekly-downloads-in-supply-chain-attack",
+      "https://github.com/chains-project/chains-project.github.io/blob/main/software-supply-chain-attacks-crypto.md",
+      "https://github.com/lirantal/awesome-nodejs-security/blob/main/README.md"
+    ],
+    "fixture_urls": [],
+    "notes": "Live search returned 3 usable domain-filtered items."
+  },
+  {
+    "timestamp": "2026-10-21T21:13:18.205343+00:00",
+    "slot_id": "marketing_3",
+    "post_type": "marketing-post",
+    "service": "pentesting",
+    "query": "web3 supply chain npm package vulnerability incident",
+    "allowed_domains": [
+      "bleepingcomputer.com",
+      "cisa.gov",
+      "cve.mitre.org",
+      "github.com",
+      "hackerone.com",
+      "krebsonsecurity.com",
+      "mandiant.com",
+      "nvd.nist.gov",
+      "owasp.org",
+      "portswigger.net",
+      "x.com"
+    ],
+    "requested_domains": [
+      "x.com"
+    ],
+    "mode": "live",
+    "status": "success",
+    "error": null,
+    "results_count": 3,
+    "retrieved_urls": [
+      "https://x.com/TheHackersNews/status/1866102846736720241",
+      "https://x.com/hudsonjameson/status/1864076649311940988",
+      "https://x.com/OneKey_Anzen/article/1994913714492059989"
+    ],
+    "fixture_urls": [],
+    "notes": "Live search returned 3 usable domain-filtered items."
+  }
+]

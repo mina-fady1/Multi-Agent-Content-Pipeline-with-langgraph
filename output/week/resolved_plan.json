@@ -1,0 +1,74 @@
+[
+  {
+    "id": "thread_1",
+    "type": "tech-thread",
+    "service": "web3-security",
+    "focus": "Arbitrary CPI and Signer Privilege Escalation in Solana Smart Wallets",
+    "resolved_topic": "`sub_account_sign_v1` and `sign_v1` Passes Session Authorities as Signers During CPI Calls [Swig / Rust]",
+    "source_type": "kb",
+    "source_id": "SS-03703",
+    "source_url": null,
+    "source_provenance": "kb",
+    "status": "accepted"
+  },
+  {
+    "id": "thread_2",
+    "type": "tech-thread",
+    "service": "web3-security",
+    "focus": null,
+    "resolved_topic": "`secp256k1` Is Vulnerable to Signature Malleability and Replay Attacks [Swig / Rust]",
+    "source_type": "kb",
+    "source_id": "SS-03706",
+    "source_url": null,
+    "source_provenance": "kb",
+    "status": "accepted"
+  },
+  {
+    "id": "thread_3",
+    "type": "tech-thread",
+    "service": "web3-security",
+    "focus": null,
+    "resolved_topic": "`sign_v1` Allows Malicious Instructions on Accounts Without Proper Restrictions [Swig / Rust]",
+    "source_type": "kb",
+    "source_id": "SS-03699",
+    "source_url": null,
+    "source_provenance": "kb",
+    "status": "accepted"
+  },
+  {
+    "id": "marketing_1",
+    "type": "marketing-post",
+    "service": "agentic-security",
+    "focus": "Prompt injection reaching agent signing tools",
+    "resolved_topic": "explain-openclaw/05-worst-case-security/prompt-injection-attacks.md at master · centminmod/explain-openclaw · GitHub",
+    "source_type": "web",
+    "source_id": null,
+    "source_url": "https://github.com/centminmod/explain-openclaw/blob/master/05-worst-case-security/prompt-injection-attacks.md",
+    "source_provenance": "live",
+    "status": "dropped"
+  },
+  {
+    "id": "marketing_2",
+    "type": "marketing-post",
+    "service": "agentic-payments",
+    "focus": null,
+    "resolved_topic": "GitHub - aws-samples/sample-secure-agentic-payments-on-aws-x402 · GitHub",
+    "source_type": "web",
+    "source_id": null,
+    "source_url": "https://github.com/aws-samples/sample-secure-agentic-payments-on-aws-x402",
+    "source_provenance": "live",
+    "status": "accepted"
+  },
+  {
+    "id": "marketing_3",
+    "type": "marketing-post",
+    "service": "pentesting",
+    "focus": null,
+    "resolved_topic": "Hackers hijack npm packages with 2 billion weekly downloads in supply chain attack",
+    "source_type": "web",
+    "source_id": null,
+    "source_url": "https://www.bleepingcomputer.com/news/security/hackers-hijack-npm-packages-with-2-billion-weekly-downloads-in-supply-chain-attack",
+    "source_provenance": "live",
+    "status": "accepted"
+  }
+]

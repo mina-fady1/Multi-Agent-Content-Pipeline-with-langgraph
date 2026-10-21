@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "demo_mode": false,
+  "timestamp": "2026-10-21T21:13:40.337083+00:00",
+  "generated_files": [
+    "images/marketing_2.png",
+    "images/marketing_3.png",
+    "images/thread_1.png",
+    "images/thread_2.png",
+    "images/thread_3.png",
+    "posts/marketing_2.json",
+    "posts/marketing_3.json",
+    "posts/thread_1.json",
+    "posts/thread_2.json",
+    "posts/thread_3.json"
+  ],
+  "error": null
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "thread_1",
+    "type": "tech-thread",
+    "topic": "`sub_account_sign_v1` and `sign_v1` Passes Session Authorities as Signers During CPI Calls [Swig / Rust]",
+    "status": "accepted",
+    "content": "1/ Swig's `sub_account_sign_v1` and `sign_v1` pass session authorities as signers during CPI calls [KB: SS-03703]. This flaw grants unintended authority to downstream transactions.\n\n2/ The code omits session authorities from the `restricted_keys` list. Only `Secp256k1` lacks authority, while other types incorrectly include both payer and session keys.\n\n3/ Downstream CPI calls receive these accounts as valid signers. This bypasses intended access controls and expands the effective signer set beyond protocol design.\n\n4/ Fix requires checking `authority_type()` before writing to `restricted_keys`. For non-`Secp256k1` roles, write both payer and session authority keys explicitly.\n\n5/ The corrected logic writes two keys when the authority type is not `Secp256k1`. This ensures only authorized entities can sign transactions involving CPI operations.\n\n6/ Verify invariants confirm that restricted keys match expected authority types. Session accounts must remain excluded unless their specific role permits signing privileges.\n\n7/ Protocol defense demands strict signer validation at entry points. Implementing precise key restrictions prevents privilege escalation via CPI mechanisms and protects asset integrity.",
+    "tweets": [
+      "1/ Swig's `sub_account_sign_v1` and `sign_v1` pass session authorities as signers during CPI calls [KB: SS-03703]. This flaw grants unintended authority to downstream transactions.",
+      "2/ The code omits session authorities from the `restricted_keys` list. Only `Secp256k1` lacks authority, while other types incorrectly include both payer and session keys.",
+      "3/ Downstream CPI calls receive these accounts as valid signers. This bypasses intended access controls and expands the effective signer set beyond protocol design.",
+      "4/ Fix requires checking `authority_type()` before writing to `restricted_keys`. For non-`Secp256k1` roles, write both payer and session authority keys explicitly.",
+      "5/ The corrected logic writes two keys when the authority type is not `Secp256k1`. This ensures only authorized entities can sign transactions involving CPI operations.",
+      "6/ Verify invariants confirm that restricted keys match expected authority types. Session accounts must remain excluded unless their specific role permits signing privileges.",
+      "7/ Protocol defense demands strict signer validation at entry points. Implementing precise key restrictions prevents privilege escalation via CPI mechanisms and protects asset integrity."
+    ],
+    "image_path": "D:\\programming mina fady\\Multi-Agent Content Pipeline with langgraph\\output\\week11\\images\\thread_1.png",
+    "image_prompt": "Dark technical research card titled '`sub_account_sign_v1` and `sign_v1` Passes Session Authorities as Signers During CPI Calls [Swig / Rust]' with evidence label 'KB FINDING'. Dark slate background (#0B0F19), #00FFA3 accents, simple architectural nodes. Use only this approved takeaway: Swig's `sub_account_sign_v1` and `sign_v1` pass session authorities as signers during CPI calls . This flaw grants unintended authority to downstream transactions.. Aspect ratio 16:9.",
+    "image_spec": {
+      "title": "`sub_account_sign_v1` and `sign_v1` Passes Session Authorities as Signers During CPI Calls [Swig / Rust]",
+      "subtitle": "SanadSquad Research // WEB3-SECURITY",
+      "theme": "dark-cyber",
+      "accent_color": "#00FFA3",
+      "key_takeaway": "Swig's `sub_account_sign_v1` and `sign_v1` pass session authorities as signers during CPI calls . This flaw grants unintended authority to downstream transactions.",
+      "image_prompt": "Dark technical research card titled '`sub_account_sign_v1` and `sign_v1` Passes Session Authorities as Signers During CPI Calls [Swig / Rust]' with evidence label 'KB FINDING'. Dark slate background (#0B0F19), #00FFA3 accents, simple architectural nodes. Use only this approved takeaway: Swig's `sub_account_sign_v1` and `sign_v1` pass session authorities as signers during CPI calls . This flaw grants unintended authority to downstream transactions.. Aspect ratio 16:9.",
+      "evidence_label": "KB FINDING"
+    },
+    "source_provenance": "kb"
+  },
+  {
+    "id": "thread_2",
+    "type": "tech-thread",
+    "topic": "`secp256k1` Is Vulnerable to Signature Malleability and Replay Attacks [Swig / Rust]",
+    "status": "accepted",
+    "content": "1/ Swig's secp256k1_authenticate fails against signature malleability and replay attacks. [KB: SS-03706] This flaw permits unauthorized repeated operations via reused signatures.\n\n2/ The implementation lacks checks to enforce single-use signatures. An attacker can submit the same valid signature multiple times to authorize distinct transactions without detection.\n\n3/ Furthermore, the code ignores whether the S component is in low-order form. Multiple valid signatures exist for one message, allowing modification of signed payloads without breaking verification logic.\n\n4/ This malleability undermines signature uniqueness. Attackers alter the S value to create new valid signatures, enabling replay in different contexts or manipulation of transaction data.\n\n5/ Remediation requires rejecting any signature where the S component is not in low-order form. The validator must explicitly check this condition before processing authorization requests.\n\n6/ To prevent replay attacks, implement nonce tracking or on-chain replay protection mechanisms. Ensure each signature is accepted only once to stop unauthorized repeated operations.\n\n7/ Protocol defense demands strict invariant enforcement for cryptographic primitives. SanadSquad audits cover the whole attack surface, including smart contract logic and protocol design reviews.",
+    "tweets": [
+      "1/ Swig's secp256k1_authenticate fails against signature malleability and replay attacks. [KB: SS-03706] This flaw permits unauthorized repeated operations via reused signatures.",
+      "2/ The implementation lacks checks to enforce single-use signatures. An attacker can submit the same valid signature multiple times to authorize distinct transactions without detection.",
+      "3/ Furthermore, the code ignores whether the S component is in low-order form. Multiple valid signatures exist for one message, allowing modification of signed payloads without breaking verification logic.",
+      "4/ This malleability undermines signature uniqueness. Attackers alter the S value to create new valid signatures, enabling replay in different contexts or manipulation of transaction data.",
+      "5/ Remediation requires rejecting any signature where the S component is not in low-order form. The validator must explicitly check this condition before processing authorization requests.",
+      "6/ To prevent replay attacks, implement nonce tracking or on-chain replay protection mechanisms. Ensure each signature is accepted only once to stop unauthorized repeated operations.",
+      "7/ Protocol defense demands strict invariant enforcement for cryptographic primitives. SanadSquad audits cover the whole attack surface, including smart contract logic and protocol design reviews."
+    ],
+    "image_path": "D:\\programming mina fady\\Multi-Agent Content Pipeline with langgraph\\output\\week11\\images\\thread_2.png",
+    "image_prompt": "Dark technical research card titled '`secp256k1` Is Vulnerable to Signature Malleability and Replay Attacks [Swig / Rust]' with evidence label 'KB FINDING'. Dark slate background (#0B0F19), #00FFA3 accents, simple architectural nodes. Use only this approved takeaway: Swig's secp256k1_authenticate fails against signature malleability and replay attacks. This flaw permits unauthorized repeated operations via reused signatures.. Aspect ratio 16:9.",
+    "image_spec": {
+      "title": "`secp256k1` Is Vulnerable to Signature Malleability and Replay Attacks [Swig / Rust]",
+      "subtitle": "SanadSquad Research // WEB3-SECURITY",
+      "theme": "dark-cyber",
+      "accent_color": "#00FFA3",
+      "key_takeaway": "Swig's secp256k1_authenticate fails against signature malleability and replay attacks. This flaw permits unauthorized repeated operations via reused signatures.",
+      "image_prompt": "Dark technical research card titled '`secp256k1` Is Vulnerable to Signature Malleability and Replay Attacks [Swig / Rust]' with evidence label 'KB FINDING'. Dark slate background (#0B0F19), #00FFA3 accents, simple architectural nodes. Use only this approved takeaway: Swig's secp256k1_authenticate fails against signature malleability and replay attacks. This flaw permits unauthorized repeated operations via reused signatures.. Aspect ratio 16:9.",
+      "evidence_label": "KB FINDING"
+    },
+    "source_provenance": "kb"
+  },
+  {
+    "id": "thread_3",
+    "type": "tech-thread",
+    "topic": "`sign_v1` Allows Malicious Instructions on Accounts Without Proper Restrictions [Swig / Rust]",
+    "status": "accepted",
+    "content": "1/ Swig protocol allows malicious instructions on restricted accounts via sign_v1. A user with TokenLimit can transfer authority without balance changes, bypassing access controls entirely. [KB: SS-03699]\n\n2/ The instruction checks permissions only when balances shift. It ignores actions like SetAuthority that modify control but leave token amounts untouched. This logic flaw permits unauthorized ownership transfers.\n\n3/ An attacker with minimal TokenLimit can execute arbitrary CPIs on any account type. Stake accounts and other state structures face similar risks where control changes do not trigger permission checks.\n\n4/ The proof of concept confirms second_authority gains full control over a token account despite holding only a limited transfer allowance. Ownership transfers succeed because the balance remains constant.\n\n5/ Remediation requires restricting instruction types per account role. Token accounts must permit only Transfer, Burn, and Mint operations. No other actions should execute without explicit approval.\n\n6/ Implement strict invariant checks before CPI execution. Verify that every allowed instruction matches the assigned authority configuration for that specific account type.\n\n7/ SanadSquad covers the whole attack surface, not just the contract. Our Web3 Security audits address these access control gaps across EVM and Solana environments.",
+    "tweets": [
+      "1/ Swig protocol allows malicious instructions on restricted accounts via sign_v1. A user with TokenLimit can transfer authority without balance changes, bypassing access controls entirely. [KB: SS-03699]",
+      "2/ The instruction checks permissions only when balances shift. It ignores actions like SetAuthority that modify control but leave token amounts untouched. This logic flaw permits unauthorized ownership transfers.",
+      "3/ An attacker with minimal TokenLimit can execute arbitrary CPIs on any account type. Stake accounts and other state structures face similar risks where control changes do not trigger permission checks.",
+      "4/ The proof of concept confirms second_authority gains full control over a token account despite holding only a limited transfer allowance. Ownership transfers succeed because the balance remains constant.",
+      "5/ Remediation requires restricting instruction types per account role. Token accounts must permit only Transfer, Burn, and Mint operations. No other actions should execute without explicit approval.",
+      "6/ Implement strict invariant checks before CPI execution. Verify that every allowed instruction matches the assigned authority configuration for that specific account type.",
+      "7/ SanadSquad covers the whole attack surface, not just the contract. Our Web3 Security audits address these access control gaps across EVM and Solana environments."
+    ],
+    "image_path": "D:\\programming mina fady\\Multi-Agent Content Pipeline with langgraph\\output\\week11\\images\\thread_3.png",
+    "image_prompt": "Dark technical research card titled '`sign_v1` Allows Malicious Instructions on Accounts Without Proper Restrictions [Swig / Rust]' with evidence label 'KB FINDING'. Dark slate background (#0B0F19), #00FFA3 accents, simple architectural nodes. Use only this approved takeaway: Swig protocol allows malicious instructions on restricted accounts via sign_v1. A user with TokenLimit can transfer authority without balance changes, bypassing access controls entirely.. Aspect ratio 16:9.",
+    "image_spec": {
+      "title": "`sign_v1` Allows Malicious Instructions on Accounts Without Proper Restrictions [Swig / Rust]",
+      "subtitle": "SanadSquad Research // WEB3-SECURITY",
+      "theme": "dark-cyber",
+      "accent_color": "#00FFA3",
+      "key_takeaway": "Swig protocol allows malicious instructions on restricted accounts via sign_v1. A user with TokenLimit can transfer authority without balance changes, bypassing access controls entirely.",
+      "image_prompt": "Dark technical research card titled '`sign_v1` Allows Malicious Instructions on Accounts Without Proper Restrictions [Swig / Rust]' with evidence label 'KB FINDING'. Dark slate background (#0B0F19), #00FFA3 accents, simple architectural nodes. Use only this approved takeaway: Swig protocol allows malicious instructions on restricted accounts via sign_v1. A user with TokenLimit can transfer authority without balance changes, bypassing access controls entirely.. Aspect ratio 16:9.",
+      "evidence_label": "KB FINDING"
+    },
+    "source_provenance": "kb"
+  },
+  {
+    "id": "marketing_2",
+    "type": "marketing-post",
+    "topic": "GitHub - aws-samples/sample-secure-agentic-payments-on-aws-x402 · GitHub",
+    "status": "accepted",
+    "content": "Contract audits miss how AI agents propose spending without holding wallets, relying instead on external governance to enforce policy before execution. SanadSquad reviews agentic payment protocols to ensure this separation of decision and execution remains intact.",
+    "tweets": [
+      "Contract audits miss how AI agents propose spending without holding wallets, relying instead on external governance to enforce policy before execution. SanadSquad reviews agentic payment protocols to ensure this separation of decision and execution remains intact."
+    ],
+    "image_path": "D:\\programming mina fady\\Multi-Agent Content Pipeline with langgraph\\output\\week11\\images\\marketing_2.png",
+    "image_prompt": "Dark technical research card titled 'GitHub - aws-samples/sample-secure-agentic-payments-on-aws-x402 · GitHub' with evidence label 'WEB RESEARCH'. Dark slate background (#0B0F19), #FFB800 accents, simple architectural nodes. Use only this approved takeaway: Contract audits miss how AI agents propose spending without holding wallets, relying instead on external governance to enforce policy before execution. SanadSquad reviews agentic payment protocols to ensure this separation of decision and execution remains intact.. Aspect ratio 16:9.",
+    "image_spec": {
+      "title": "GitHub - aws-samples/sample-secure-agentic-payments-on-aws-x402 · GitHub",
+      "subtitle": "SanadSquad Research // AGENTIC-PAYMENTS",
+      "theme": "dark-cyber",
+      "accent_color": "#FFB800",
+      "key_takeaway": "Contract audits miss how AI agents propose spending without holding wallets, relying instead on external governance to enforce policy before execution. SanadSquad reviews agentic payment protocols to ensure this separation of decision and execution remains intact.",
+      "image_prompt": "Dark technical research card titled 'GitHub - aws-samples/sample-secure-agentic-payments-on-aws-x402 · GitHub' with evidence label 'WEB RESEARCH'. Dark slate background (#0B0F19), #FFB800 accents, simple architectural nodes. Use only this approved takeaway: Contract audits miss how AI agents propose spending without holding wallets, relying instead on external governance to enforce policy before execution. SanadSquad reviews agentic payment protocols to ensure this separation of decision and execution remains intact.. Aspect ratio 16:9.",
+      "evidence_label": "WEB RESEARCH"
+    },
+    "source_provenance": "live"
+  },
+  {
+    "id": "marketing_3",
+    "type": "marketing-post",
+    "topic": "Hackers hijack npm packages with 2 billion weekly downloads in supply chain attack",
+    "status": "accepted",
+    "content": "Contract audits miss malware in npm packages that hijack wallets via phishing. SanadSquad pentesting checks these supply chains before they drain funds.",
+    "tweets": [
+      "Contract audits miss malware in npm packages that hijack wallets via phishing. SanadSquad pentesting checks these supply chains before they drain funds."
+    ],
+    "image_path": "D:\\programming mina fady\\Multi-Agent Content Pipeline with langgraph\\output\\week11\\images\\marketing_3.png",
+    "image_prompt": "Dark technical research card titled 'Hackers hijack npm packages with 2 billion weekly downloads in supply chain attack' with evidence label 'WEB RESEARCH'. Dark slate background (#0B0F19), #FF3366 accents, simple architectural nodes. Use only this approved takeaway: Contract audits miss malware in npm packages that hijack wallets via phishing. SanadSquad pentesting checks these supply chains before they drain funds.. Aspect ratio 16:9.",
+    "image_spec": {
+      "title": "Hackers hijack npm packages with 2 billion weekly downloads in supply chain attack",
+      "subtitle": "SanadSquad Research // PENTESTING",
+      "theme": "dark-cyber",
+      "accent_color": "#FF3366",
+      "key_takeaway": "Contract audits miss malware in npm packages that hijack wallets via phishing. SanadSquad pentesting checks these supply chains before they drain funds.",
+      "image_prompt": "Dark technical research card titled 'Hackers hijack npm packages with 2 billion weekly downloads in supply chain attack' with evidence label 'WEB RESEARCH'. Dark slate background (#0B0F19), #FF3366 accents, simple architectural nodes. Use only this approved takeaway: Contract audits miss malware in npm packages that hijack wallets via phishing. SanadSquad pentesting checks these supply chains before they drain funds.. Aspect ratio 16:9.",
+      "evidence_label": "WEB RESEARCH"
+    },
+    "source_provenance": "live"
+  }
+]

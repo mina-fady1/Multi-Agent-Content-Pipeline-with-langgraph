@@ -1,0 +1,18 @@
+{
+  "slot_id": "marketing_2",
+  "type": "marketing-post",
+  "service": "agentic-payments",
+  "format": "differentiation",
+  "topic": "GitHub - aws-samples/sample-secure-agentic-payments-on-aws-x402 · GitHub",
+  "post_text": "Contract audits miss how AI agents propose spending without holding wallets, relying instead on external governance to enforce policy before execution. SanadSquad reviews agentic payment protocols to ensure this separation of decision and execution remains intact.",
+  "tweets": [
+    "Contract audits miss how AI agents propose spending without holding wallets, relying instead on external governance to enforce policy before execution. SanadSquad reviews agentic payment protocols to ensure this separation of decision and execution remains intact."
+  ],
+  "image": "D:\\programming mina fady\\Multi-Agent Content Pipeline with langgraph\\output\\week11\\images\\marketing_2.png",
+  "links": [],
+  "source_type": "web",
+  "source_id": null,
+  "source_url": "https://github.com/aws-samples/sample-secure-agentic-payments-on-aws-x402",
+  "source_provenance": "live",
+  "review_score": 9.2
+}

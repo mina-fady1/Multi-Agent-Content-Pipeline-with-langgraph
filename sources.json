@@ -1,0 +1,105 @@
+{
+  "web3-security": {
+    "blogs": [
+      "paradigm.xyz",
+      "samczsun.com",
+      "trailofbits.com",
+      "openzeppelin.com",
+      "solana.com"
+    ],
+    "docs": [
+      "docs.solana.com",
+      "ethereum.org",
+      "anchor-lang.com"
+    ],
+    "production": [
+      "github.com",
+      "solodit.xyz"
+    ],
+    "analysis": [
+      "rekt.news",
+      "defillama.com",
+      "dune.com"
+    ],
+    "figures": [
+      "x.com"
+    ]
+  },
+  "pentesting": {
+    "blogs": [
+      "portswigger.net",
+      "krebsonsecurity.com",
+      "bleepingcomputer.com"
+    ],
+    "docs": [
+      "owasp.org",
+      "cve.mitre.org",
+      "nvd.nist.gov"
+    ],
+    "production": [
+      "github.com",
+      "hackerone.com"
+    ],
+    "analysis": [
+      "cisa.gov",
+      "mandiant.com"
+    ],
+    "figures": [
+      "x.com"
+    ]
+  },
+  "agentic-security": {
+    "blogs": [
+      "simonwillison.net",
+      "lakera.ai",
+      "embracethered.com"
+    ],
+    "docs": [
+      "owasp.org",
+      "deepmind.google",
+      "anthropic.com",
+      "openai.com"
+    ],
+    "production": [
+      "github.com",
+      "langchain.com"
+    ],
+    "analysis": [
+      "arxiv.org",
+      "hiddenlayer.com"
+    ],
+    "figures": [
+      "x.com"
+    ]
+  },
+  "agentic-payments": {
+    "blogs": [
+      "x402.org",
+      "coinbase.com",
+      "stripe.com"
+    ],
+    "docs": [
+      "x402.org",
+      "docs.cdp.coinbase.com"
+    ],
+    "production": [
+      "github.com"
+    ],
+    "analysis": [
+      "dune.com",
+      "defillama.com"
+    ],
+    "figures": [
+      "x.com"
+    ]
+  },
+  "_deny": [
+    "medium.com",
+    "buzzfeed.com",
+    "forbes.com",
+    "quora.com",
+    "reddit.com",
+    "wikipedia.org",
+    "pinterest.com"
+  ]
+}
