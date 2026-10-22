@@ -10,6 +10,7 @@ Production-grade content generation and verification pipeline for **SanadSquad**
 ---
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Repository Structure](#repository-structure)
 - [Core Architecture & Capabilities](#core-architecture--capabilities)
@@ -32,6 +33,7 @@ Production-grade content generation and verification pipeline for **SanadSquad**
 ## Overview
 
 SanadSquad delivers full-surface cybersecurity across four core verticals:
+
 1. **Web3 Security** (EVM & Solana / SVM contract audits, formal invariant verification)
 2. **Web2 Pentesting** (APIs, cloud infrastructure, CI/CD pipelines, frontends, dependency supply chains)
 3. **Agentic Security & Red Teaming** (Prompt injection, tool abuse, agent wallets & spending policies)
@@ -121,46 +123,16 @@ flowchart LR
 5. **Branded Visual Card Generation**: Accepted pieces automatically receive a 1200x675 pixel PNG card rendered with Pillow, complete with provenance tags (`KB FINDING`, `WEB RESEARCH`, `DEMO FIXTURE`).
 6. **Isolated State Execution**: Each run instantiates an isolated `PipelineServices` context, guaranteeing thread safety, independent token accounting, and zero cross-run state pollution.
 
----
-
-## Audit Findings & Hardening (21/21 Resolved)
-
-The codebase has undergone a full architectural audit with **100% of the 21 identified defects remediated and covered by automated tests**:
-
-| Severity | Defect Addressed | Resolution |
-|---|---|---|
-| **High** | Invalid Reviewer response fell back to automatic acceptance | Strict JSON parsing + Pydantic schema validation. Non-conforming or corrupted model outputs are rejected immediately. |
-| **High** | Failed live search silently used static demo fixtures | Live search fails honestly and drops slots without evidence. Fixtures are isolated to `--demo-research`. |
-| **Medium** | System policies loaded from disk were omitted from model prompts | Markdown policies (`instructions/`, `brand-voice.md`, `marketing-rules.md`, `rubric.md`) are injected directly into agent prompts. |
-| **Medium** | URL verification used weak prefix matching | Replaced with strict parsed-hostname and normalized document URL validation against `research_log.json`. |
-| **Medium** | Domain allowlist could be bypassed via embedded credentials | URLs are parsed with `urllib.parse.urlsplit` to validate hostnames, reject credentials, and enforce `http`/`https`. |
-| **Medium** | Unmatched topics silently resolved to unrelated findings | Exact finding ID lookup with explicit failure for unmatched topics. |
-| **Medium** | Overlong drafts were truncated mid-sentence | Full drafts are preserved; length violations trigger an automated rewrite pass with retry feedback. |
-| **Medium** | Invalid service names expanded search allowlists | Strict service enum validation rejects unknown services before research execution. |
-| **Medium** | Global search logs and used KB IDs leaked across runs | Scoped all run state to an ephemeral `PipelineServices` object passed through LangGraph state. |
-| **Medium** | Slot IDs allowed directory traversal (`../../victim`) | Filenames sanitized via regex `^[a-zA-Z0-9_\-]+$`; paths strictly verified to stay within output folder. |
-| **Medium** | Duplicate slot IDs silently overwrote content | Orchestrator validates slot ID uniqueness before starting thread pool. |
-| **Medium** | Revisions erased initial draft rejection history | Full append-only `DraftAttempt` history exported to `drafts.json` and `review_report.json`. |
-| **Medium** | Re-running output directories left stale post files | Authoritative atomic manifest exports; obsolete posts and images are cleanly purged. |
-| **Medium** | `--model` CLI argument was ignored by entrypoints | Effective model propagated through orchestrator to LLM factory, with accurate cost estimation. |
-| **Medium** | Structured Gemini blocks converted to Python `repr` string | Multi-part and structured response blocks properly decoded and concatenated as pure text. |
-| **Medium** | Circular import when importing graph module independently | Decoupled graph construction from orchestrator instantiation; zero circular imports. |
-| **Medium** | Outdated Gemini token pricing calculations | Updated to official Gemini 2.5 Flash pricing ($0.30/M input, $2.50/M output) with unknown model safety. |
-| **Low** | Three-item list detector required four items | Fixed regex grammar to accurately flag parallel three-item lists. |
-| **Low** | Blank marketing posts passed length checks | Enforced minimum word and non-whitespace character thresholds. |
-| **Low** | Web search submitted only first 10 domains from allowlist | Implemented domain batching to ensure complete allowlist coverage. |
-| **Low** | Visual card generated `VERIFIED AUDIT` for general marketing posts | Dynamic visual card headers matching content provenance (`KB FINDING`, `WEB RESEARCH`, etc.). |
-
----
-
 ## Setup & Installation
 
 ### 1. Prerequisites
+
 - **Python**: 3.10+ (Tested extensively on Python 3.12 64-bit on Windows, Linux, and macOS)
 - **Git**: Installed and configured
 - **Ollama** *(Optional, for local inference)*: Download from [ollama.com](https://ollama.com/)
 
 ### 2. Virtual Environment & Dependencies
+
 ```powershell
 # Clone the repository
 git clone https://github.com/mina-fady1/Multi-Agent-Content-Pipeline-with-langgraph.git
@@ -180,11 +152,15 @@ python -m pip install -r requirements-lock.txt
 ```
 
 ### 3. Environment Configuration
+
 Copy the clean template `.env.example` to `.env`:
+
 ```powershell
 cp .env.example .env
 ```
+
 Configure your environment variables in `.env`:
+
 ```env
 # Google Gemini API Key (Required when using --provider gemini)
 GEMINI_API_KEY=your_gemini_api_key_here
@@ -205,7 +181,9 @@ OLLAMA_BASE_URL=http://localhost:11434
 > The `.env` file is excluded in `.gitignore` to guarantee secret credentials are never committed.
 
 ### 4. Local Ollama Model Setup
+
 To run 100% locally with zero cloud API keys:
+
 ```powershell
 # Start Ollama service (if not running as a system service)
 ollama serve
@@ -219,6 +197,7 @@ ollama pull qwen3.5:4b-q4_K_M
 ## CLI Usage & Workflows
 
 ### 1. Full Weekly Pipeline (`run_week.py`)
+
 Executes the scheduled slots defined in `plan.json` in parallel:
 
 ```powershell
@@ -236,6 +215,7 @@ python run_week.py --provider ollama --demo-research --output output/demo
 ```
 
 ### 2. Single Piece Execution (`run_piece.py`)
+
 Generates and verifies an individual piece for rapid iteration:
 
 ```powershell
@@ -256,7 +236,7 @@ python run_piece.py --type marketing-post --topic "prompt injection" --service a
 Before any drafted piece is submitted to the LLM reviewer, it must pass 7 automated code-level checks in `skills/quality_checker.py`:
 
 | Check | Target / Rule | Failure Condition |
-|---|---|---|
+| --- | --- | --- |
 | **Banned Characters** | No em dashes (`—`), en dashes (` – `), curly quotes (`“”‘’`), emojis, or hashtags (`#`) | Any matching forbidden character |
 | **Banned Vocabulary** | Loaded dynamically from `banned-words.txt` | Any prohibited buzzword (e.g. *delve*, *pivotal*, *testament*) |
 | **Banned Syntactic Patterns** | Negative parallelism, copula avoidance (*serves as*), and filler openers | Matched syntax regex |
